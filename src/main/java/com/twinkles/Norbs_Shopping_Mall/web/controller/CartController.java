@@ -21,13 +21,9 @@ public class CartController {
     private CartService cartService;
 
     @PostMapping
-    public ResponseEntity<?>addItemToCart(@RequestBody CartRequestDto cartRequestDto){
+    public ResponseEntity<?>addItemToCart(@RequestBody CartRequestDto cartRequestDto) throws NorbsShoppingMallException {
         CartResponseDto cartResponseDto = null;
-        try{
-            cartResponseDto = cartService.addItemToCart(cartRequestDto);
-        } catch (NorbsShoppingMallException ex){
-            ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
-        }
+        cartResponseDto = cartService.addItemToCart(cartRequestDto);
         return ResponseEntity.status(HttpStatus.OK).body(cartResponseDto);
     }
 }

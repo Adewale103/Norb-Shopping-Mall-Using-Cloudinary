@@ -17,11 +17,7 @@ class AppUserRepositoryTest {
 
     @Test
     void whenUserIsCreated_ThenCreateCartTest(){
-        AppUser appUser = new AppUser();
-        appUser.setFirstName("Adewale");
-        appUser.setLastName("Micheal");
-        appUser.setEmail("ade@gmail.com");
-        appUser.setAddress("No 1, Oyigbo road");
+        AppUser appUser = new AppUser("firstName", "lastName","email@gmail.com", "12344");
 
         appUserRepository.save(appUser);
         assertThat(appUser.getId()).isNotNull();

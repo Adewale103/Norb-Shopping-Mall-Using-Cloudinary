@@ -29,14 +29,9 @@ public class ProductController {
     }
 
     @PostMapping(consumes = {"multipart/form-data"})
-    public ResponseEntity<?> createProduct( @ModelAttribute ProductDto productDto){
-        try{
-            Product savedProduct = productService.createProduct(productDto);
+    public ResponseEntity<?> createProduct( @ModelAttribute ProductDto productDto) throws IOException, NorbsShoppingMallException {
+           Product savedProduct = productService.createProduct(productDto);
             return ResponseEntity.status(HttpStatus.CREATED).body(savedProduct);
-        }
-        catch (NorbsShoppingMallException | IOException ex){
-            return ResponseEntity.badRequest().body(ex.getMessage());
-        }
     }
 
     @PatchMapping(path = "/{id}",consumes = "application/json-patch+json")
