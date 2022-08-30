@@ -28,6 +28,7 @@ public class TokenProviderImpl implements TokenProvider{
 
     @Override
     public String getUsernameFromJWTToken(String token) {
+
         return getClaimFromJWTToken(token, Claims::getSubject);
     }
 
