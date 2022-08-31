@@ -16,6 +16,7 @@ public class AppUserDto {
     private long id;
     private String firstName;
     private String lastName;
+    private String phoneNumber;
     @Email
     @Column(unique = true)
     private String email;

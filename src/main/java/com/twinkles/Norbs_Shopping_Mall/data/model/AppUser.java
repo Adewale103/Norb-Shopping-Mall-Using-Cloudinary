@@ -36,7 +36,10 @@ public class AppUser {
     @Email
     @Column(unique = true)
     private String email;
+    private boolean isVerified;
     private String password;
+    @Column(unique = true)
+    private String phoneNumber;
 
     @Column(length = 500)
     private String address;
@@ -46,26 +49,28 @@ public class AppUser {
     @OneToOne(cascade = CascadeType.PERSIST)
     private Cart myCart;
 
-    public AppUser(String firstName, String lastName, String email, String password){
+    public AppUser(String firstName, String lastName, String email, String password, String phoneNumber){
         myCart = new Cart();
         myCart.setTotalPrice(0.00);
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+        this.phoneNumber = phoneNumber;
         if(roles == null){
             roles = new HashSet<>();
         }
         roles.add(new Role(RoleType.ROLE_USER));
     }
 
-    public AppUser(String firstName, String lastName, String email, String password, RoleType roleType){
+    public AppUser(String firstName, String lastName, String email, String password, String phoneNumber, RoleType roleType){
         myCart = new Cart();
         myCart.setTotalPrice(0.00);
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+        this.phoneNumber = phoneNumber;
         if(roles == null){
             roles = new HashSet<>();
         }

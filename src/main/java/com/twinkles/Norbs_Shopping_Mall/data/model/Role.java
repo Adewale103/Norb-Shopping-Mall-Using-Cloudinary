@@ -16,6 +16,7 @@ public class Role {
     @SequenceGenerator(name = "role_id_sequence", sequenceName = "role_id_sequence")
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "role_id_sequence")
     public Long id;
+    @Enumerated(value = EnumType.STRING)
     private RoleType roleType;
 
     public Role(RoleType roleType){

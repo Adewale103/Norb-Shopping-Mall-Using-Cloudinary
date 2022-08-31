@@ -4,17 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.validation.annotation.Validated;
 
-@Getter
 @Setter
-@Validated
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateAppUserRequest {
-    private String firstName;
-    private String lastName;
+public class LoginRequest {
     private String email;
     private String password;
-    private String phoneNumber;
 }
