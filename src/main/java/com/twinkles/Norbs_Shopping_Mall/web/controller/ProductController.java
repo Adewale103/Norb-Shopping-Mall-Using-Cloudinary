@@ -10,6 +10,7 @@ import com.twinkles.Norbs_Shopping_Mall.web.exception.NorbsShoppingMallException
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -23,18 +24,21 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping()
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     public ResponseEntity<?> getAllProduct(){
         List<Product> allProducts = productService.getAllProducts();
         return ResponseEntity.status(HttpStatus.OK).body(allProducts);
     }
 
     @PostMapping(consumes = {"multipart/form-data"})
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     public ResponseEntity<?> createProduct( @ModelAttribute ProductDto productDto) throws IOException, NorbsShoppingMallException {
            Product savedProduct = productService.createProduct(productDto);
             return ResponseEntity.status(HttpStatus.CREATED).body(savedProduct);
     }
 
     @PatchMapping(path = "/{id}",consumes = "application/json-patch+json")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     public ResponseEntity<?> updateProduct (@PathVariable Long id, @RequestBody JsonPatch patch){
         try{
             Product updatedProduct =productService.updateProductDetails(id, patch);

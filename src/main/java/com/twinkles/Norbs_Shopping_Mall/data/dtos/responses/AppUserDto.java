@@ -21,7 +21,4 @@ public class AppUserDto {
     @Column(unique = true)
     private String email;
     private String password;
-
-    @Column(length = 500)
-    private String address;
 }
